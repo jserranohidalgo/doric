@@ -9,7 +9,7 @@ header:
   - label: "Read the docs"
     url: "/docs/"
 
-excerpt: "Fast development API for Apache Spark"
+excerpt: "Fast & safe development API for Apache Spark"
 
 feature_row:
   - image_path: assets/images/Logos_doric_0.svg
