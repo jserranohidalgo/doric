@@ -15,7 +15,7 @@ feature_row:
   - image_path: assets/images/Logos_doric_0.svg
     alt: "Code faster"
     title: "Code faster"
-    excerpt: "Don't need to learn all again, doric adds a layer to the dataframes to avoid the most common erros developing with the spark framework"
+    excerpt: "doric adds a layer to the dataframes to avoid the most common erros developing with the spark framework"
   - image_path: assets/images/Logos_doric_1.svg
     alt: "Type safe columns"
     title: "Type safe columns"
