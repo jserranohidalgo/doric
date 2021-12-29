@@ -2,8 +2,10 @@ docs:
   - title: Learn Doric
     url: /docs/
     children:
+      - title: "Quick start"
+          url: /docs/quickstart/
       - title: "Installation"
-        url: /docs/installation/
+          url: /docs/installation/
       - title: "Introduction"
         url: /docs/
       - title: "Typed Columns"
