@@ -25,7 +25,7 @@ libraryDependencies += "org.hablapps" % "doric_2.12" % "0.0.1"
 Doric is committed to use the most modern APIs first.
 * Doric is compatible with Spark version 3.1.2.
 * The latest stable version of doric is 0.0.1.
-* The latest experimental version of doric is 0.0.0+156-afc53520-SNAPSHOT.
+* The latest experimental version of doric is 0.0.0+157-855836dd-SNAPSHOT.
 
 ## Type-safe column expressions
 
@@ -82,8 +82,9 @@ i.e. `col[Int]("name")`, instead of a plain `col("name")`.
 
 Of course, this only works if you, the programmer, know the intended type 
 of the column at compile-time. In a pure dynamic setting, doric is useless. Note, however, that you don't need to know 
-in advance the whole row type as with Datasets. In this way, doric sits between a wholehearted static setting and a 
-purely dynamic one. It offers type-safety at a minimum cost, without compromising performance, i.e. sticking to DataFrames.
+in advance the whole row type as with Datasets. Thus, doric sits between a wholehearted static setting and a 
+purely dynamic one. It offers type-safety for column expressions at a minimum cost, without compromising performance, 
+i.e. sticking to DataFrames.
 ---
 
 Finally, once we have constructed a doric column expression, we can use it within the context of a `withColumn` expression, 
@@ -249,7 +250,7 @@ val complexCol: DoricColumn[Int] =
       .transform(_ + 1.lit)
       .aggregate(0.lit)(_ + _)
 // complexCol: DoricColumn[Int] = TransformationDoricColumn(
-//   Kleisli(cats.data.Kleisli$$Lambda$1493/908528661@af23f5)
+//   Kleisli(cats.data.Kleisli$$Lambda$1493/552245969@2a8d91af)
 // )
   
 dfArrays.select(complexCol as c"complexTransformation").show
@@ -287,7 +288,7 @@ The default doric syntax is a little stricter and forces us to transform these v
 ```scala
 val colD = colInt(c"int") + 1.lit
 // colD: DoricColumn[Int] = TransformationDoricColumn(
-//   Kleisli(cats.data.Kleisli$$Lambda$1493/908528661@378ec278)
+//   Kleisli(cats.data.Kleisli$$Lambda$1493/552245969@6bd10b84)
 // )
 
 intDF.select(colD).show
@@ -308,11 +309,11 @@ however, we have to _explicitly_ add the following import statement:
 import _root_.doric.implicitConversions.literalConversion
 val colSugarD = colInt(c"int") + 1
 // colSugarD: DoricColumn[Int] = TransformationDoricColumn(
-//   Kleisli(cats.data.Kleisli$$Lambda$1493/908528661@2cd28c84)
+//   Kleisli(cats.data.Kleisli$$Lambda$1493/552245969@53df0cd6)
 // )
 val columConcatLiterals = concat("this", "is","doric") // concat expects DoricColumn[String] values, the conversion puts them as expected
 // columConcatLiterals: StringColumn = TransformationDoricColumn(
-//   Kleisli(cats.data.Kleisli$$Lambda$1493/908528661@53c4b0a9)
+//   Kleisli(cats.data.Kleisli$$Lambda$1493/552245969@2568bffc)
 // ) // concat expects DoricColumn[String] values, the conversion puts them as expected
 
 intDF.select(colSugarD, columConcatLiterals).show
