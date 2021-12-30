@@ -1,6 +1,6 @@
 ---
 title: Doric Documentation
-permalink: docs/
+permalink: docs/quickstart/
 ---
 
 # Quick start
@@ -61,7 +61,7 @@ df
 ``` 
 
 Using doric, there is no need to wait for so long: errors will be reported at compile-time!
-``` scala mdoc:crash
+```scala mdoc:crash
 List(1,2,3).toDF.select(col[Int]("value") * lit(true))
 ```
 
@@ -123,13 +123,13 @@ somewhat similar to the `$"..."` Spark interpolator. An expression `c"..."` just
 `CName`. This allows us to distinguish between plain string values and column name values. To obtain a doric colum 
 from a column name, just add the intended type as follows:
 
-``` scala mdoc
+```scala mdoc
 val column: DoricColumn[Int] = c"name"[Int]
 ``` 
 
 Note also that column names can be implicitly converted to proper doric columns, provided that type information is
 available from the context:
-``` scala mdoc
+```scala mdoc
 val column: DoricColumn[Int] = c"name"
 ```
 
