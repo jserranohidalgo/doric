@@ -98,7 +98,7 @@ strDf
   .show()
 ```
 
-Also, we can transform a pure Spark column into a doric column, and be sure that specific doric validations,
+Also, we can transform a pure Spark column into a doric column, and be sure that specific doric validations
 will be applied:
 ```scala mdoc
 strDf.select(f.col("str").asDoric[String]).show()
