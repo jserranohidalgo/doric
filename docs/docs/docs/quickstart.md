@@ -81,8 +81,11 @@ Finally, once we have constructed a doric column expression, we can use it withi
 or, in general, wherever we may use plain Spark columns: joins, filters, etc.:
 
 ``` scala mdoc
-List(1,2,3).toDF.withColumn("other", colInt("value") * lit(1))
+List(1,2,3).toDF.withColumn("other", col[Int]("value") * lit(1))
 ```
+
+As you can see in [validations](intro.md), the explicit type annotations enable further validations when columns
+are interpreted with the context of `withColumn`, `select`, etc.
 
 ## Mixing doric and Spark columns
 
