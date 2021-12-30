@@ -127,7 +127,7 @@ somewhat similar to the `$"..."` Spark interpolator. An expression `c"..."` just
 from a column name, just add the intended type as follows:
 
 ```scala mdoc
-val column: DoricColumn[Int] = c"name"[Int]
+val column: DoricColumn[Int] = c"name".apply[Int]
 ``` 
 
 Note also that column names can be implicitly converted to proper doric columns, provided that type information is
@@ -155,6 +155,8 @@ val sAddedAll: Column = f.aggregate(sAddedOne, f.lit(0), (x, y) => x + y)
 dfArrays.select(sAddedAll as "complexTransformation").show
 ```
 
+[//]: # (NOTE JM: why?)
+
 This complex transformation has to be developed in several steps, and usually tested step by step. 
 The one-line version is not easy to read, either:
 
@@ -167,8 +169,6 @@ val complexS: Column =
 
 dfArrays.select(complexS as "complexTransformation").show
 ```
-
-[//]: # (NOTE JM: why?)
 
 Using doric, it's much easier to keep track of what we can do step-by-step:
 ```scala mdoc
