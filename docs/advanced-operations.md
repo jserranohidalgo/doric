@@ -56,7 +56,7 @@ val matchEx1: DoricColumn[Int] = matchToType[Int](c"my_column") // we only know 
   .caseType[Array[Int]](_.getIndex(0) + 10) // a complex transformation in case it's an array of integers
   .inOtherCaseError // in any other case, it will produce an error that will be displayed as any other [doric errors](/docs/errors/)
 // matchEx1: DoricColumn[Int] = TransformationDoricColumn(
-//   Kleisli(doric.syntax.NonEmptyTypeMatcher$$Lambda$2976/1016485064@638d624a)
+//   Kleisli(doric.syntax.NonEmptyTypeMatcher$$Lambda$2976/1974578707@638d624a)
 // )
 ```
 Then you can use like the normal doric column it is
@@ -109,7 +109,7 @@ val matchEx2 = matchToType[Int](c"my_column")
   .caseType[Int](identity)
   .inOtherCase(-1)
 // matchEx2: DoricColumn[Int] = TransformationDoricColumn(
-//   Kleisli(doric.syntax.NonEmptyTypeMatcher$$Lambda$3011/1118156368@85f5f55)
+//   Kleisli(doric.syntax.NonEmptyTypeMatcher$$Lambda$3015/975786515@85f5f55)
 // )
 ```
 ```scala

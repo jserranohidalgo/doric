@@ -25,7 +25,7 @@ libraryDependencies += "org.hablapps" % "doric_2.12" % "0.0.1"
 Doric is committed to use the most modern APIs first.
 * Doric is compatible with Spark version 3.1.2.
 * The latest stable version of doric is 0.0.1.
-* The latest experimental version of doric is 0.0.0+155-58460d4f-SNAPSHOT.
+* The latest experimental version of doric is 0.0.0+156-afc53520-SNAPSHOT.
 
 ## Type-safe column expressions
 
@@ -118,7 +118,7 @@ strDf
 //
 ```
 
-Also, we can transform a pure Spark column into a doric column, and be sure that specific doric validations,
+Also, we can transform a pure Spark column into a doric column, and be sure that specific doric validations
 will be applied:
 ```scala
 strDf.select(f.col("str").asDoric[String]).show()
