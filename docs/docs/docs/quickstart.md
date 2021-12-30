@@ -90,6 +90,8 @@ for numbers, dates, strings, etc., are provided. Occasionally, however, we might
 Spark column expressions. There is no problem with that, as this example shows: 
 
 ```scala mdoc
+def df = List("hi", "welcome", "to", "doric").toDF("str")
+
 df
   .select(f.concat(f.col("str"), f.lit("!!!")) as "newCol") //pure spark
   .select(concat(lit("???"), colString(c"newCol")) as c"finalCol") //pure and sweet doric
