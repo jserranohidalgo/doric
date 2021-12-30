@@ -72,8 +72,9 @@ i.e. `col[Int]("name")`, instead of a plain `col("name")`.
 
 Of course, this only works if you, the programmer, know the intended type 
 of the column at compile-time. In a pure dynamic setting, doric is useless. Note, however, that you don't need to know 
-in advance the whole row type as with Datasets. In this way, doric sits between a wholehearted static setting and a 
-purely dynamic one. It offers type-safety at a minimum cost, without compromising performance, i.e. sticking to DataFrames.
+in advance the whole row type as with Datasets. Thus, doric sits between a wholehearted static setting and a 
+purely dynamic one. It offers type-safety for column expressions at a minimum cost, without compromising performance, 
+i.e. sticking to DataFrames.
 ---
 
 Finally, once we have constructed a doric column expression, we can use it within the context of a `withColumn` expression, 
