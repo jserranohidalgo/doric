@@ -62,7 +62,7 @@ df
 
 Using doric, there is no need to wait for so long: errors will be reported at compile-time!
 ``` scala mdoc:crash
-def df = List(1,2,3).toDF.select(col[Int]("value") * lit(true))
+List(1,2,3).toDF.select(col[Int]("value") * lit(true))
 ```
 
 As you may see, changes in column expressions are minimal: just annotate column references with the intended type, 
@@ -90,9 +90,9 @@ for numbers, dates, strings, etc., are provided. Occasionally, however, we might
 Spark column expressions. There is no problem with that, as this example shows: 
 
 ```scala mdoc
-def df = List("hi", "welcome", "to", "doric").toDF("str")
+val strDf = List("hi", "welcome", "to", "doric").toDF("str")
 
-df
+strDf
   .select(f.concat(f.col("str"), f.lit("!!!")) as "newCol") //pure spark
   .select(concat(lit("???"), colString(c"newCol")) as c"finalCol") //pure and sweet doric
   .show()
@@ -101,12 +101,12 @@ df
 Also, we can transform a pure Spark column into a doric column, and be sure that specific doric validations,
 will be applied:
 ```scala mdoc
-df.select(f.col("str").asDoric[String]).show()
+strDf.select(f.col("str").asDoric[String]).show()
 ```
 
 ```scala mdoc:crash
 
-df.select((f.col("str") + f.lit(true)).asDoric[String]).show
+strDf.select((f.col("str") + f.lit(true)).asDoric[String]).show
 ```
 
 ## Sweet doric syntax sugar
