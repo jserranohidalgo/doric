@@ -1,6 +1,6 @@
 ---
 title: Doric Documentation
-permalink: docs/quickstart/
+permalink: docs/
 ---
 
 # Quick start
@@ -45,7 +45,7 @@ import org.apache.spark.sql.{functions => f}
 Next, make sure to activate the flag `spark.sql.datetime.java8API.enabled` when creating the Spark context.
 
 ```scala mdoc:invisible
-val spark = _root_.doric.DocInit.getSpark
+val spark = doric.DocInit.getSpark
 import spark.implicits._
 ```
 
@@ -61,12 +61,19 @@ df
 ``` 
 
 Using doric, there is no need to wait for so long: errors will be reported at compile-time!
-```scala mdoc:crash
+```scala mdoc:fail
+// should be removed
+import doric.implicitConversions.stringCname
+
 List(1,2,3).toDF.select(col[Int]("value") * lit(true))
 ```
 
 As you may see, changes in column expressions are minimal: just annotate column references with the intended type, 
-i.e. `col[Int]("name")`, instead of a plain `col("name")`. 
+i.e. `col[Int]("name")`, instead of a plain `col("name")`. With this extra bit of type information, we are not only
+referring to a column named `name`: we are signalling that the expected Spark data type of that column is `Integer`. 
+In order to refer to columns of other data types, doric strictly follows the 
+[mapping](https://spark.apache.org/docs/latest/sql-ref-datatypes.html) defined by Spark SQL itself. 
+
 ---
 **NOTE**
 
@@ -133,7 +140,7 @@ val column: DoricColumn[Int] = c"name".apply[Int]
 Note also that column names can be implicitly converted to proper doric columns, provided that type information is
 available from the context:
 ```scala mdoc
-val column: DoricColumn[Int] = c"name"
+val column2: DoricColumn[Int] = c"name"
 ```
 
 ### Dot syntax
@@ -204,7 +211,7 @@ In doric, we can also profit from the same literal syntax with the help of impli
 however, we have to _explicitly_ add the following import statement: 
 
 ```scala mdoc
-import _root_.doric.implicitConversions.literalConversion
+import doric.implicitConversions.literalConversion
 val colSugarD = colInt(c"int") + 1
 val columConcatLiterals = concat("this", "is","doric") // concat expects DoricColumn[String] values, the conversion puts them as expected
 

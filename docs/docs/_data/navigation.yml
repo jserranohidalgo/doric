@@ -3,13 +3,9 @@ docs:
     url: /docs/
     children:
       - title: "Quick start"
-        url: /docs/quickstart/
-      - title: "Installation"
-        url: /docs/installation/
-      - title: "Introduction"
         url: /docs/
-      - title: "Typed Columns"
-        url: /docs/typed/
+      - title: "Doric validations"
+        url: /docs/validations/
       - title: "Doric column ADT"
         url: /docs/adt-columns/
       - title: "Error location"
