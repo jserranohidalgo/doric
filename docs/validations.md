@@ -7,16 +7,16 @@ permalink: docs/validations/
 # Doric validations
 
 Doric is a type-safe API, which means that many common errors will be captured at compile-time. However, there
-are errors which can't be anticipated, since they depend on the actual datasource available at runtime.
-For instance, we might make reference to a non-existing column. In that case, doric behaves similarly to Spark,
+are errors which can't be anticipated, since they depend on the actual datasource available at runtime. For instance, 
+we might make reference to a non-existing column. In this case, doric behaves similarly to Spark,
 raising a run-time exception: 
 
 ```scala
 // Spark
 List(1,2,3).toDF.select(f.col("id")+1)
 // org.apache.spark.sql.AnalysisException: cannot resolve '`id`' given input columns: [value];
-// 'Project [('id + 1) AS (id + 1)#599]
-// +- LocalRelation [value#595]
+// 'Project [('id + 1) AS (id + 1)#666]
+// +- LocalRelation [value#662]
 // 
 // 	at org.apache.spark.sql.catalyst.analysis.package$AnalysisErrorAt.failAnalysis(package.scala:42)
 // 	at org.apache.spark.sql.catalyst.analysis.CheckAnalysis$$anonfun$$nestedInanonfun$checkAnalysis$1$2.applyOrElse(CheckAnalysis.scala:155)
@@ -41,8 +41,8 @@ List(1,2,3).toDF.select(colInt("id")+1)
 // 	at cats.data.Validated.fold(Validated.scala:29)
 // 	at doric.sem.package$ErrorThrower.returnOrThrow(package.scala:9)
 // 	at doric.sem.TransformOps$DataframeTransformationSyntax.select(TransformOps.scala:139)
-// 	at repl.MdocSession$App$$anonfun$4.apply(validations.md:37)
-// 	at repl.MdocSession$App$$anonfun$4.apply(validations.md:37)
+// 	at repl.MdocSession$App$$anonfun$2.apply(validations.md:37)
+// 	at repl.MdocSession$App$$anonfun$2.apply(validations.md:37)
 // Caused by: org.apache.spark.sql.AnalysisException: Cannot resolve column name "id" among (value)
 // 	at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$resolveException(Dataset.scala:272)
 // 	at org.apache.spark.sql.Dataset.$anonfun$resolve$1(Dataset.scala:263)
@@ -55,10 +55,6 @@ List(1,2,3).toDF.select(colInt("id")+1)
 // 	at cats.data.Kleisli.$anonfun$map$1(Kleisli.scala:40)
 // 	at cats.data.Kleisli.$anonfun$map$1(Kleisli.scala:40)
 ```
-
-However, there is a slight difference in the exception reported: doric adds precise information about the location
-of the error in the source code, which in many cases is immensely useful (e.g. to support the development of [reusable
-functions](modularity.md)). 
 
 ## Mismatch types
 
@@ -99,45 +95,9 @@ val df = List("1","2","three").toDF.select(colInt("value") + 1.lit)
 // 	at cats.data.Validated.fold(Validated.scala:29)
 // 	at doric.sem.package$ErrorThrower.returnOrThrow(package.scala:9)
 // 	at doric.sem.TransformOps$DataframeTransformationSyntax.select(TransformOps.scala:139)
-// 	at repl.MdocSession$App$$anonfun$8.apply$mcV$sp(validations.md:59)
-// 	at repl.MdocSession$App$$anonfun$8.apply(validations.md:58)
-// 	at repl.MdocSession$App$$anonfun$8.apply(validations.md:58)
+// 	at repl.MdocSession$App$$anonfun$3.apply$mcV$sp(validations.md:59)
+// 	at repl.MdocSession$App$$anonfun$3.apply(validations.md:58)
+// 	at repl.MdocSession$App$$anonfun$3.apply(validations.md:58)
 ```
 
-## Error aggregation
-
-Doric departs from Spark in an additional aspect of error management: Sparks adopts a fail-fast strategy, in such 
-a way that it will stop at the first error encountered, whereas doric will keep accumulating errors throughout the
-whole column expression. This is essential to speed up and facilitate the solution to most common development problems.
-
-For instance, let's consider the following code where we encounter three erroneous column references:
-
-```scala
-val dfPair = List(("hi", 31)).toDF("str", "int")
-val col1 = colInt("str")   // existing column, wrong type
-val col2 = colString("int") // existing column, wrong type
-val col3 = colInt("unknown") // non-existing column
-```
-
-```scala
-dfPair.select(col1, col2, col3)
-// doric.sem.DoricMultiError: Found 3 errors in select
-//   The column with name 'str' is of type StringType and it was expected to be IntegerType
-//   	located at . (validations.md:71)
-//   The column with name 'int' is of type IntegerType and it was expected to be StringType
-//   	located at . (validations.md:74)
-//   Cannot resolve column name "unknown" among (str, int)
-//   	located at . (validations.md:77)
-// 
-// 	at doric.sem.package$ErrorThrower.$anonfun$returnOrThrow$1(package.scala:9)
-// 	at cats.data.Validated.fold(Validated.scala:29)
-// 	at doric.sem.package$ErrorThrower.returnOrThrow(package.scala:9)
-// 	at doric.sem.TransformOps$DataframeTransformationSyntax.select(TransformOps.scala:139)
-// 	at repl.MdocSession$App$$anonfun$14.apply(validations.md:84)
-// 	at repl.MdocSession$App$$anonfun$14.apply(validations.md:84)
-```
-
-As we can see, the select expression throws a _single_ exception reporting the three different errors. There is no
-need to start an annoying fix-rerun loop until all errors are found. Moreover, note that each error points to the 
-line of the corresponding column expression where it took place. 
-
+More on error reporting in our next [section](errors.md).

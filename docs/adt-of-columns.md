@@ -16,14 +16,14 @@ This way Doric helps you to always carrie the name that was assigned and allows 
 ```scala
 import doric._
 
-val colFromDF: NamedDoricColumn[String] = col[String](c"user")
+val colFromDF: NamedDoricColumn[String] = col[String]("user")
 // colFromDF: NamedDoricColumn[String] = NamedDoricColumn(
-//   Kleisli(doric.types.SparkType$$Lambda$1489/1909117445@2b79c8ff),
+//   Kleisli(doric.types.SparkType$$Lambda$1433/1337547542@52abed9d),
 //   "user"
 // )
-val colWithAlias: NamedDoricColumn[Int] = col[Int](c"int1") + col[Int](c"int2") as c"newVal"
+val colWithAlias: NamedDoricColumn[Int] = col[Int]("int1") + col[Int]("int2") as "newVal"
 // colWithAlias: NamedDoricColumn[Int] = NamedDoricColumn(
-//   Kleisli(cats.data.Kleisli$$Lambda$1493/540393300@6af78a48),
+//   Kleisli(cats.data.Kleisli$$Lambda$1437/50901526@51ac12ac),
 //   "newVal"
 // )
 
