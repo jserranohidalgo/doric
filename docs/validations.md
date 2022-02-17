@@ -15,8 +15,8 @@ raising a run-time exception:
 // Spark
 List(1,2,3).toDF.select(f.col("id")+1)
 // org.apache.spark.sql.AnalysisException: cannot resolve '`id`' given input columns: [value];
-// 'Project [('id + 1) AS (id + 1)#666]
-// +- LocalRelation [value#662]
+// 'Project [('id + 1) AS (id + 1)#674]
+// +- LocalRelation [value#670]
 // 
 // 	at org.apache.spark.sql.catalyst.analysis.package$AnalysisErrorAt.failAnalysis(package.scala:42)
 // 	at org.apache.spark.sql.catalyst.analysis.CheckAnalysis$$anonfun$$nestedInanonfun$checkAnalysis$1$2.applyOrElse(CheckAnalysis.scala:155)
