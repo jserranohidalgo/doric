@@ -126,6 +126,10 @@
                         <a class="trait" href="LiteralSparkType.html" title=""></a>
                         <a href="LiteralSparkType.html" title="">LiteralSparkType</a>
                       </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="LiteralSparkTypeLPI.html" title=""></a>
+                        <a href="LiteralSparkTypeLPI.html" title="">LiteralSparkTypeLPI</a>
+                      </li><li class="current-entities indented2">
                         <a class="object" href="NumericType$.html" title=""></a>
                         <a class="trait" href="NumericType.html" title=""></a>
                         <a href="NumericType.html" title="">NumericType</a>
@@ -137,6 +141,10 @@
                         <a class="object" href="SparkType$.html" title=""></a>
                         <a class="trait" href="SparkType.html" title="Typeclass to relate a type T with it's spark DataType"></a>
                         <a href="SparkType.html" title="Typeclass to relate a type T with it's spark DataType">SparkType</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="SparkTypeLPI.html" title=""></a>
+                        <a href="SparkTypeLPI.html" title="">SparkTypeLPI</a>
                       </li><li class="current-entities indented2">
                         <a class="object" href="SparkUnsafeCasting$.html" title=""></a>
                         <a class="trait" href="SparkUnsafeCasting.html" title="Utility to cast a value using spark cast method"></a>
@@ -174,7 +182,7 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">LiteralSparkType</span>
+        <span class="name">LiteralSparkType</span><span class="result"> extends <a href="LiteralSparkTypeLPI.html" class="extype" name="doric.types.LiteralSparkTypeLPI">LiteralSparkTypeLPI</a></span>
       </span>
       </h4>
 
@@ -183,7 +191,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="https://www.scala-lang.org/api/2.12.15/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a>, <a href="https://www.scala-lang.org/api/2.12.15/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></div>
+          <div class="superTypes hiddenContent"><a href="LiteralSparkTypeLPI.html" class="extype" name="doric.types.LiteralSparkTypeLPI">LiteralSparkTypeLPI</a>, <a href="https://www.scala-lang.org/api/2.12.15/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a>, <a href="https://www.scala-lang.org/api/2.12.15/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></div>
         </div></div>
         
 
@@ -209,7 +217,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="doric.types.LiteralSparkType"><span>LiteralSparkType</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="doric.types.LiteralSparkType"><span>LiteralSparkType</span></li><li class="in" name="doric.types.LiteralSparkTypeLPI"><span>LiteralSparkTypeLPI</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -338,6 +346,22 @@
                 <span class="name">@inline</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="doric.types.LiteralSparkType#arraytt" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="arraytt[T](implicitevidence$7:reflect.runtime.universe.TypeTag[T]):reflect.runtime.universe.TypeTag[Array[T]]"></a><a id="arraytt[T](scala.reflect.api.JavaUniverse.TypeTag[T]):scala.reflect.api.JavaUniverse.TypeTag[Array[T]]"></a>
+      <span class="permalink">
+      <a href="../../doric/types/LiteralSparkType$.html#arraytt[T](implicitevidence$7:reflect.runtime.universe.TypeTag[T]):reflect.runtime.universe.TypeTag[Array[T]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">arraytt</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="doric.types.LiteralSparkType.arraytt.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<a href="https://www.scala-lang.org/api/2.12.15/scala/Array.html#scala.Array" class="extype" name="scala.Array">Array</a>[<span class="extype" name="doric.types.LiteralSparkType.arraytt.T">T</span>]]</span>
+      </span>
+      
+      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
@@ -376,6 +400,25 @@
     </span>)</span>
               
                 <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="doric.types.LiteralSparkType#createPrimitive" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="createPrimitive[T](implicitevidence$1:scala.reflect.ClassTag[T],implicitevidence$2:reflect.runtime.universe.TypeTag[T]):doric.types.LiteralSparkType.Primitive[T]"></a><a id="createPrimitive[T](ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T]):Primitive[T]"></a>
+      <span class="permalink">
+      <a href="../../doric/types/LiteralSparkType$.html#createPrimitive[T](implicitevidence$1:scala.reflect.ClassTag[T],implicitevidence$2:reflect.runtime.universe.TypeTag[T]):doric.types.LiteralSparkType.Primitive[T]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">createPrimitive</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.15/scala/reflect/ClassTag.html#scala.reflect.ClassTag" class="extype" name="scala.reflect.ClassTag">ClassTag</a>[<span class="extype" name="doric.types.LiteralSparkType.createPrimitive.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="doric.types.LiteralSparkType.createPrimitive.T">T</span>]</span>)</span><span class="result">: <a href="#Primitive[T]=doric.types.LiteralSparkType[T]{typeOriginalSparkType=T}" class="extmbr" name="doric.types.LiteralSparkType.Primitive">Primitive</a>[<span class="extype" name="doric.types.LiteralSparkType.createPrimitive.T">T</span>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -640,6 +683,38 @@
       </span>
       
       
+    </li><li name="doric.types.LiteralSparkTypeLPI#fromProduct" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fromProduct[T&lt;:Product](implicitevidence$8:reflect.runtime.universe.TypeTag[T],implicitevidence$9:scala.reflect.ClassTag[T]):LiteralSparkTypeLPI.this.Primitive[T]"></a><a id="fromProduct[T&lt;:Product](scala.reflect.api.JavaUniverse.TypeTag[T],ClassTag[T]):Primitive[T]"></a>
+      <span class="permalink">
+      <a href="../../doric/types/LiteralSparkType$.html#fromProduct[T&lt;:Product](implicitevidence$8:reflect.runtime.universe.TypeTag[T],implicitevidence$9:scala.reflect.ClassTag[T]):LiteralSparkTypeLPI.this.Primitive[T]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fromProduct</span><span class="tparams">[<span name="T">T &lt;: <a href="https://www.scala-lang.org/api/2.12.15/scala/Product.html#scala.Product" class="extype" name="scala.Product">Product</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="doric.types.LiteralSparkTypeLPI.fromProduct.T">T</span>]</span>, <span name="arg1">arg1: <a href="https://www.scala-lang.org/api/2.12.15/scala/reflect/ClassTag.html#scala.reflect.ClassTag" class="extype" name="scala.reflect.ClassTag">ClassTag</a>[<span class="extype" name="doric.types.LiteralSparkTypeLPI.fromProduct.T">T</span>]</span>)</span><span class="result">: <a href="#Primitive[T]=doric.types.LiteralSparkType[T]{typeOriginalSparkType=T}" class="extmbr" name="doric.types.LiteralSparkType.Primitive">Primitive</a>[<span class="extype" name="doric.types.LiteralSparkTypeLPI.fromProduct.T">T</span>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="LiteralSparkTypeLPI.html" class="extype" name="doric.types.LiteralSparkTypeLPI">LiteralSparkTypeLPI</a></dd></dl></div>
+    </li><li name="doric.types.LiteralSparkType#fromRow" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="fromRow:doric.types.LiteralSparkType.Primitive[org.apache.spark.sql.Row]"></a><a id="fromRow:Primitive[Row]"></a>
+      <span class="permalink">
+      <a href="../../doric/types/LiteralSparkType$.html#fromRow:doric.types.LiteralSparkType.Primitive[org.apache.spark.sql.Row]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fromRow</span><span class="result">: <a href="#Primitive[T]=doric.types.LiteralSparkType[T]{typeOriginalSparkType=T}" class="extmbr" name="doric.types.LiteralSparkType.Primitive">Primitive</a>[<a href="https://spark.apache.org/docs/3.1.3/api/scala/org/apache/spark/sql/Row.html#org.apache.spark.sql.Row" class="extype" name="org.apache.spark.sql.Row">Row</a>]</span>
+      </span>
+      
+      
     </li><li name="doric.types.LiteralSparkType#fromStringDf" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="fromStringDf:doric.types.LiteralSparkType.Primitive[String]"></a><a id="fromStringDf:Primitive[String]"></a>
       <span class="permalink">
@@ -726,6 +801,38 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="doric.types.LiteralSparkType#listtt" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="listtt[T](implicitevidence$6:reflect.runtime.universe.TypeTag[T]):reflect.runtime.universe.TypeTag[List[T]]"></a><a id="listtt[T](scala.reflect.api.JavaUniverse.TypeTag[T]):scala.reflect.api.JavaUniverse.TypeTag[List[T]]"></a>
+      <span class="permalink">
+      <a href="../../doric/types/LiteralSparkType$.html#listtt[T](implicitevidence$6:reflect.runtime.universe.TypeTag[T]):reflect.runtime.universe.TypeTag[List[T]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">listtt</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="doric.types.LiteralSparkType.listtt.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="scala.List">List</span>[<span class="extype" name="doric.types.LiteralSparkType.listtt.T">T</span>]]</span>
+      </span>
+      
+      
+    </li><li name="doric.types.LiteralSparkType#maptt" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="maptt[K,V](implicitevidence$4:reflect.runtime.universe.TypeTag[K],implicitevidence$5:reflect.runtime.universe.TypeTag[V]):reflect.runtime.universe.TypeTag[Map[K,V]]"></a><a id="maptt[K,V](scala.reflect.api.JavaUniverse.TypeTag[K],scala.reflect.api.JavaUniverse.TypeTag[V]):scala.reflect.api.JavaUniverse.TypeTag[Map[K,V]]"></a>
+      <span class="permalink">
+      <a href="../../doric/types/LiteralSparkType$.html#maptt[K,V](implicitevidence$4:reflect.runtime.universe.TypeTag[K],implicitevidence$5:reflect.runtime.universe.TypeTag[V]):reflect.runtime.universe.TypeTag[Map[K,V]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">maptt</span><span class="tparams">[<span name="K">K</span>, <span name="V">V</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="doric.types.LiteralSparkType.maptt.K">K</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="doric.types.LiteralSparkType.maptt.V">V</span>]</span>)</span><span class="result">: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="doric.types.LiteralSparkType.maptt.K">K</span>, <span class="extype" name="doric.types.LiteralSparkType.maptt.V">V</span>]]</span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -780,6 +887,22 @@
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="doric.types.LiteralSparkType#optiontt" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="optiontt[T](implicitevidence$3:reflect.runtime.universe.TypeTag[T]):reflect.runtime.universe.TypeTag[Option[T]]"></a><a id="optiontt[T](scala.reflect.api.JavaUniverse.TypeTag[T]):scala.reflect.api.JavaUniverse.TypeTag[Option[T]]"></a>
+      <span class="permalink">
+      <a href="../../doric/types/LiteralSparkType$.html#optiontt[T](implicitevidence$3:reflect.runtime.universe.TypeTag[T]):reflect.runtime.universe.TypeTag[Option[T]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">optiontt</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="doric.types.LiteralSparkType.optiontt.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<a href="https://www.scala-lang.org/api/2.12.15/scala/Option.html#scala.Option" class="extype" name="scala.Option">Option</a>[<span class="extype" name="doric.types.LiteralSparkType.optiontt.T">T</span>]]</span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -890,7 +1013,9 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="doric.types.LiteralSparkTypeLPI">
+              <h3>Inherited from <a href="LiteralSparkTypeLPI.html" class="extype" name="doric.types.LiteralSparkTypeLPI">LiteralSparkTypeLPI</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="https://www.scala-lang.org/api/2.12.15/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <a href="https://www.scala-lang.org/api/2.12.15/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></h3>

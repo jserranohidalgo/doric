@@ -15,7 +15,7 @@ raising a run-time exception:
 // Spark
 List(1,2,3).toDF.select(f.col("id")+1)
 // org.apache.spark.sql.AnalysisException: cannot resolve 'id' given input columns: [value];
-// 'Project [unresolvedalias(('id + 1), Some(org.apache.spark.sql.Column$$Lambda$4030/0x000000010174e040@58405478))]
+// 'Project [unresolvedalias(('id + 1), Some(org.apache.spark.sql.Column$$Lambda$4037/0x0000000101752040@6d514e63))]
 // +- LocalRelation [value#292]
 // 
 // 	at org.apache.spark.sql.catalyst.analysis.package$AnalysisErrorAt.failAnalysis(package.scala:54)
@@ -51,7 +51,7 @@ List(1,2,3).toDF.select(colInt("id")+1)
 // 	at org.apache.spark.sql.Dataset.resolve(Dataset.scala:250)
 // 	at org.apache.spark.sql.Dataset.col(Dataset.scala:1352)
 // 	at org.apache.spark.sql.Dataset.apply(Dataset.scala:1319)
-// 	at doric.types.SparkType.$anonfun$validate$1(SparkType.scala:56)
+// 	at doric.types.SparkType.$anonfun$validate$1(SparkType.scala:59)
 // 	at cats.data.KleisliApply.$anonfun$product$2(Kleisli.scala:674)
 // 	at cats.data.Kleisli.$anonfun$map$1(Kleisli.scala:40)
 ```

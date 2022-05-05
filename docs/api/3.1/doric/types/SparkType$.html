@@ -126,6 +126,10 @@
                         <a class="trait" href="LiteralSparkType.html" title=""></a>
                         <a href="LiteralSparkType.html" title="">LiteralSparkType</a>
                       </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="LiteralSparkTypeLPI.html" title=""></a>
+                        <a href="LiteralSparkTypeLPI.html" title="">LiteralSparkTypeLPI</a>
+                      </li><li class="current-entities indented2">
                         <a class="object" href="NumericType$.html" title=""></a>
                         <a class="trait" href="NumericType.html" title=""></a>
                         <a href="NumericType.html" title="">NumericType</a>
@@ -137,6 +141,10 @@
                         <a class="object" href="" title=""></a>
                         <a class="trait" href="SparkType.html" title="Typeclass to relate a type T with it's spark DataType"></a>
                         <a href="SparkType.html" title="Typeclass to relate a type T with it's spark DataType">SparkType</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="SparkTypeLPI.html" title=""></a>
+                        <a href="SparkTypeLPI.html" title="">SparkTypeLPI</a>
                       </li><li class="current-entities indented2">
                         <a class="object" href="SparkUnsafeCasting$.html" title=""></a>
                         <a class="trait" href="SparkUnsafeCasting.html" title="Utility to cast a value using spark cast method"></a>
@@ -174,7 +182,7 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">SparkType</span>
+        <span class="name">SparkType</span><span class="result"> extends <a href="SparkTypeLPI.html" class="extype" name="doric.types.SparkTypeLPI">SparkTypeLPI</a></span>
       </span>
       </h4>
 
@@ -183,7 +191,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="https://www.scala-lang.org/api/2.12.15/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a>, <a href="https://www.scala-lang.org/api/2.12.15/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></div>
+          <div class="superTypes hiddenContent"><a href="SparkTypeLPI.html" class="extype" name="doric.types.SparkTypeLPI">SparkTypeLPI</a>, <a href="https://www.scala-lang.org/api/2.12.15/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a>, <a href="https://www.scala-lang.org/api/2.12.15/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></div>
         </div></div>
         
 
@@ -209,7 +217,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="doric.types.SparkType"><span>SparkType</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="doric.types.SparkType"><span>SparkType</span></li><li class="in" name="doric.types.SparkTypeLPI"><span>SparkTypeLPI</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -544,6 +552,38 @@
       </span>
       
       
+    </li><li name="doric.types.SparkTypeLPI#fromHCons" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fromHCons[V,K&lt;:Symbol,VO,T&lt;:shapeless.HList](implicitW:shapeless.Witness.Aux[K],implicitST:doric.types.SparkType.Custom[V,VO],implicitTS:doric.types.SparkType.Custom[T,org.apache.spark.sql.Row]):SparkTypeLPI.this.Custom[shapeless.labelled.FieldType[K,V]::T,org.apache.spark.sql.Row]"></a><a id="fromHCons[V,K&lt;:Symbol,VO,T&lt;:HList](Aux[K],Custom[V,VO],Custom[T,Row]):Custom[::[FieldType[K,V],T],Row]"></a>
+      <span class="permalink">
+      <a href="../../doric/types/SparkType$.html#fromHCons[V,K&lt;:Symbol,VO,T&lt;:shapeless.HList](implicitW:shapeless.Witness.Aux[K],implicitST:doric.types.SparkType.Custom[V,VO],implicitTS:doric.types.SparkType.Custom[T,org.apache.spark.sql.Row]):SparkTypeLPI.this.Custom[shapeless.labelled.FieldType[K,V]::T,org.apache.spark.sql.Row]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fromHCons</span><span class="tparams">[<span name="V">V</span>, <span name="K">K &lt;: <a href="https://www.scala-lang.org/api/2.12.15/scala/Symbol.html#scala.Symbol" class="extype" name="scala.Symbol">Symbol</a></span>, <span name="VO">VO</span>, <span name="T">T &lt;: <a href="https://javadoc.io/page/com.chuusai/shapeless_2.12/2.3.9/shapeless/HList.html#shapeless.HList" class="extype" name="shapeless.HList">HList</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="W">W: <span class="extype" name="shapeless.Witness.Aux">Aux</span>[<span class="extype" name="doric.types.SparkTypeLPI.fromHCons.K">K</span>]</span>, <span name="ST">ST: <a href="#Custom[T,O]=doric.types.SparkType[T]{typeOriginalSparkType=O}" class="extmbr" name="doric.types.SparkType.Custom">Custom</a>[<span class="extype" name="doric.types.SparkTypeLPI.fromHCons.V">V</span>, <span class="extype" name="doric.types.SparkTypeLPI.fromHCons.VO">VO</span>]</span>, <span name="TS">TS: <a href="#Custom[T,O]=doric.types.SparkType[T]{typeOriginalSparkType=O}" class="extmbr" name="doric.types.SparkType.Custom">Custom</a>[<span class="extype" name="doric.types.SparkTypeLPI.fromHCons.T">T</span>, <a href="https://spark.apache.org/docs/3.1.3/api/scala/org/apache/spark/sql/Row.html#org.apache.spark.sql.Row" class="extype" name="org.apache.spark.sql.Row">Row</a>]</span>)</span><span class="result">: <a href="#Custom[T,O]=doric.types.SparkType[T]{typeOriginalSparkType=O}" class="extmbr" name="doric.types.SparkType.Custom">Custom</a>[<a href="https://javadoc.io/page/com.chuusai/shapeless_2.12/2.3.9/shapeless/$colon$colon.html#shapeless.::" class="extype" name="shapeless.::">::</a>[<span class="extype" name="shapeless.labelled.FieldType">FieldType</span>[<span class="extype" name="doric.types.SparkTypeLPI.fromHCons.K">K</span>, <span class="extype" name="doric.types.SparkTypeLPI.fromHCons.V">V</span>], <span class="extype" name="doric.types.SparkTypeLPI.fromHCons.T">T</span>], <a href="https://spark.apache.org/docs/3.1.3/api/scala/org/apache/spark/sql/Row.html#org.apache.spark.sql.Row" class="extype" name="org.apache.spark.sql.Row">Row</a>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SparkTypeLPI.html" class="extype" name="doric.types.SparkTypeLPI">SparkTypeLPI</a></dd></dl></div>
+    </li><li name="doric.types.SparkTypeLPI#fromHNil" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fromHNil:SparkTypeLPI.this.Custom[shapeless.HNil,org.apache.spark.sql.Row]"></a><a id="fromHNil:Custom[HNil,Row]"></a>
+      <span class="permalink">
+      <a href="../../doric/types/SparkType$.html#fromHNil:SparkTypeLPI.this.Custom[shapeless.HNil,org.apache.spark.sql.Row]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fromHNil</span><span class="result">: <a href="#Custom[T,O]=doric.types.SparkType[T]{typeOriginalSparkType=O}" class="extmbr" name="doric.types.SparkType.Custom">Custom</a>[<a href="https://javadoc.io/page/com.chuusai/shapeless_2.12/2.3.9/shapeless/HNil.html#shapeless.HNil" class="extype" name="shapeless.HNil">HNil</a>, <a href="https://spark.apache.org/docs/3.1.3/api/scala/org/apache/spark/sql/Row.html#org.apache.spark.sql.Row" class="extype" name="org.apache.spark.sql.Row">Row</a>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SparkTypeLPI.html" class="extype" name="doric.types.SparkTypeLPI">SparkTypeLPI</a></dd></dl></div>
     </li><li name="doric.types.SparkType#fromInstant" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="fromInstant:doric.types.SparkType.Primitive[java.time.Instant]"></a><a id="fromInstant:Primitive[Instant]"></a>
       <span class="permalink">
@@ -672,6 +712,22 @@
       </span>
       
       
+    </li><li name="doric.types.SparkTypeLPI#fromProduct" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fromProduct[A&lt;:Product,L&lt;:shapeless.HList](implicitevidence$5:reflect.runtime.universe.TypeTag[A],implicitlg:shapeless.LabelledGeneric.Aux[A,L],implicithlistST:doric.types.SparkType.Custom[L,org.apache.spark.sql.Row]):doric.types.SparkType.Custom[A,org.apache.spark.sql.Row]"></a><a id="fromProduct[A&lt;:Product,L&lt;:HList](scala.reflect.api.JavaUniverse.TypeTag[A],Aux[A,L],Custom[L,Row]):Custom[A,Row]"></a>
+      <span class="permalink">
+      <a href="../../doric/types/SparkType$.html#fromProduct[A&lt;:Product,L&lt;:shapeless.HList](implicitevidence$5:reflect.runtime.universe.TypeTag[A],implicitlg:shapeless.LabelledGeneric.Aux[A,L],implicithlistST:doric.types.SparkType.Custom[L,org.apache.spark.sql.Row]):doric.types.SparkType.Custom[A,org.apache.spark.sql.Row]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fromProduct</span><span class="tparams">[<span name="A">A &lt;: <a href="https://www.scala-lang.org/api/2.12.15/scala/Product.html#scala.Product" class="extype" name="scala.Product">Product</a></span>, <span name="L">L &lt;: <a href="https://javadoc.io/page/com.chuusai/shapeless_2.12/2.3.9/shapeless/HList.html#shapeless.HList" class="extype" name="shapeless.HList">HList</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="doric.types.SparkTypeLPI.fromProduct.A">A</span>]</span>, <span name="lg">lg: <span class="extype" name="shapeless.LabelledGeneric.Aux">Aux</span>[<span class="extype" name="doric.types.SparkTypeLPI.fromProduct.A">A</span>, <span class="extype" name="doric.types.SparkTypeLPI.fromProduct.L">L</span>]</span>, <span name="hlistST">hlistST: <a href="#Custom[T,O]=doric.types.SparkType[T]{typeOriginalSparkType=O}" class="extmbr" name="doric.types.SparkType.Custom">Custom</a>[<span class="extype" name="doric.types.SparkTypeLPI.fromProduct.L">L</span>, <a href="https://spark.apache.org/docs/3.1.3/api/scala/org/apache/spark/sql/Row.html#org.apache.spark.sql.Row" class="extype" name="org.apache.spark.sql.Row">Row</a>]</span>)</span><span class="result">: <a href="#Custom[T,O]=doric.types.SparkType[T]{typeOriginalSparkType=O}" class="extmbr" name="doric.types.SparkType.Custom">Custom</a>[<span class="extype" name="doric.types.SparkTypeLPI.fromProduct.A">A</span>, <a href="https://spark.apache.org/docs/3.1.3/api/scala/org/apache/spark/sql/Row.html#org.apache.spark.sql.Row" class="extype" name="org.apache.spark.sql.Row">Row</a>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SparkTypeLPI.html" class="extype" name="doric.types.SparkTypeLPI">SparkTypeLPI</a></dd></dl></div>
     </li><li name="doric.types.SparkType#fromRow" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="fromRow:doric.types.SparkType.Primitive[org.apache.spark.sql.Row]"></a><a id="fromRow:Primitive[Row]"></a>
       <span class="permalink">
@@ -938,7 +994,9 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="doric.types.SparkTypeLPI">
+              <h3>Inherited from <a href="SparkTypeLPI.html" class="extype" name="doric.types.SparkTypeLPI">SparkTypeLPI</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="https://www.scala-lang.org/api/2.12.15/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <a href="https://www.scala-lang.org/api/2.12.15/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></h3>
