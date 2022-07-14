@@ -54,21 +54,21 @@ will refer us to the line of the `select` statement instead:
 ```scala
 val userc = userCol("name1") // actual location of error :S
 userDF.select(userc)        // error location reported by Spark
-// org.apache.spark.sql.AnalysisException: cannot resolve 'name1_user' given input columns: [age_user, city_user, name_user];
+// org.apache.spark.sql.AnalysisException: Column 'name1_user' does not exist. Did you mean one of the following? [name_user, age_user, city_user];
 // 'Project ['name1_user]
 // +- Project [_1#208 AS name_user#215, _2#209 AS city_user#216, _3#210 AS age_user#217]
 //    +- LocalRelation [_1#208, _2#209, _3#210]
 // 
 // 	at org.apache.spark.sql.catalyst.analysis.package$AnalysisErrorAt.failAnalysis(package.scala:54)
-// 	at org.apache.spark.sql.catalyst.analysis.CheckAnalysis$$anonfun$$nestedInanonfun$checkAnalysis$1$2.applyOrElse(CheckAnalysis.scala:179)
-// 	at org.apache.spark.sql.catalyst.analysis.CheckAnalysis$$anonfun$$nestedInanonfun$checkAnalysis$1$2.applyOrElse(CheckAnalysis.scala:175)
-// 	at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformUpWithPruning$2(TreeNode.scala:535)
-// 	at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:82)
-// 	at org.apache.spark.sql.catalyst.trees.TreeNode.transformUpWithPruning(TreeNode.scala:535)
-// 	at org.apache.spark.sql.catalyst.plans.QueryPlan.$anonfun$transformExpressionsUpWithPruning$1(QueryPlan.scala:181)
-// 	at org.apache.spark.sql.catalyst.plans.QueryPlan.$anonfun$mapExpressions$1(QueryPlan.scala:193)
-// 	at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:82)
-// 	at org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpression$1(QueryPlan.scala:193)
+// 	at org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis$7(CheckAnalysis.scala:199)
+// 	at org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis$7$adapted(CheckAnalysis.scala:192)
+// 	at org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:367)
+// 	at org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis$6(CheckAnalysis.scala:192)
+// 	at org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis$6$adapted(CheckAnalysis.scala:192)
+// 	at scala.collection.immutable.Stream.foreach(Stream.scala:533)
+// 	at org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis$1(CheckAnalysis.scala:192)
+// 	at org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis$1$adapted(CheckAnalysis.scala:101)
+// 	at org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:367)
 ```
 
 ### Towards the source of error
@@ -90,9 +90,9 @@ val age = user[Int]("name")
 val team = user[String]("team")
 userDF.select(age, team)
 // doric.sem.DoricMultiError: Found 2 errors in select
-//   The column with name 'name_user' is of type StringType and it was expected to be IntegerType
-//   	located at . (modularity.md:79)
 //   Cannot resolve column name "team_user" among (name_user, city_user, age_user)
+//   	located at . (modularity.md:79)
+//   The column with name 'name_user' was expected to be IntegerType but is of type StringType
 //   	located at . (modularity.md:79)
 // 
 // 	at doric.sem.package$ErrorThrower.$anonfun$returnOrThrow$1(package.scala:9)
@@ -125,10 +125,10 @@ val age = user[Int]("name")
 val team = user[String]("team")
 userDF.select(age, team)
 // doric.sem.DoricMultiError: Found 2 errors in select
-//   The column with name 'name_user' is of type StringType and it was expected to be IntegerType
-//   	located at . (modularity.md:135)
 //   Cannot resolve column name "team_user" among (name_user, city_user, age_user)
 //   	located at . (modularity.md:136)
+//   The column with name 'name_user' was expected to be IntegerType but is of type StringType
+//   	located at . (modularity.md:135)
 // 
 // 	at doric.sem.package$ErrorThrower.$anonfun$returnOrThrow$1(package.scala:9)
 // 	at cats.data.Validated.fold(Validated.scala:29)

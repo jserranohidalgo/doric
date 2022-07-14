@@ -89,7 +89,7 @@
         <div id="types" class="types members">
               <h3>Type Members</h3>
               <ol><li name="doric.sem.All" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="AllextendsAggregationOpswithTransformOpswithJoinOpswithCollectOps"></a>
+      <a id="AllextendsAggregationOpswithTransformOpswithJoinOpswithCollectOpswithSortingOps"></a>
       <a id="All:All"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -97,44 +97,27 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <a href="All.html"><span class="name">All</span></a><span class="result"> extends <span class="extype" name="doric.sem.AggregationOps">AggregationOps</span> with <span class="extype" name="doric.sem.TransformOps">TransformOps</span> with <span class="extype" name="doric.sem.JoinOps">JoinOps</span> with <span class="extype" name="doric.sem.CollectOps">CollectOps</span></span>
+        <a href="All.html"><span class="name">All</span></a><span class="result"> extends <span class="extype" name="doric.sem.AggregationOps">AggregationOps</span> with <span class="extype" name="doric.sem.TransformOps">TransformOps</span> with <span class="extype" name="doric.sem.JoinOps">JoinOps</span> with <span class="extype" name="doric.sem.CollectOps">CollectOps</span> with <span class="extype" name="doric.sem.SortingOps">SortingOps</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#doric.sem.package@AllextendsAggregationOpswithTransformOpswithJoinOpswithCollectOps" title="Permalink" target="_top">
+      <a href="../../index.html#doric.sem.package@AllextendsAggregationOpswithTransformOpswithJoinOpswithCollectOpswithSortingOps" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
-    </li><li name="doric.sem.ChildColumnNotFound" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ChildColumnNotFoundextendsDoricSingleErrorwithProductwithSerializable"></a>
-      <a id="ChildColumnNotFound:ChildColumnNotFound"></a>
+    </li><li name="doric.sem.ColumnMultiTypeError" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ColumnMultiTypeErrorextendsDoricSingleErrorwithProductwithSerializable"></a>
+      <a id="ColumnMultiTypeError:ColumnMultiTypeError"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="ChildColumnNotFound.html"><span class="name">ChildColumnNotFound</span></a><span class="params">(<span name="columnName">columnName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="validColumns">validColumns: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="location">location: <a href="Location.html" class="extype" name="doric.sem.Location">Location</a></span>)</span><span class="result"> extends <a href="DoricSingleError.html" class="extype" name="doric.sem.DoricSingleError">DoricSingleError</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="ColumnMultiTypeError.html"><span class="name">ColumnMultiTypeError</span></a><span class="params">(<span name="columnName">columnName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="expectedTypes">expectedTypes: <span class="extype" name="scala.List">List</span>[<a href="https://spark.apache.org/docs/2.4.8/api/scala/index.html#org.apache.spark.sql.types.DataType" class="extype" target="_top">DataType</a>]</span>, <span name="foundType">foundType: <a href="https://spark.apache.org/docs/2.4.8/api/scala/index.html#org.apache.spark.sql.types.DataType" class="extype" target="_top">DataType</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="location">location: <a href="Location.html" class="extype" name="doric.sem.Location">Location</a></span>)</span><span class="result"> extends <a href="DoricSingleError.html" class="extype" name="doric.sem.DoricSingleError">DoricSingleError</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#doric.sem.package@ChildColumnNotFoundextendsDoricSingleErrorwithProductwithSerializable" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
-    </li><li name="doric.sem.ColumnMultyTypeError" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ColumnMultyTypeErrorextendsDoricSingleErrorwithProductwithSerializable"></a>
-      <a id="ColumnMultyTypeError:ColumnMultyTypeError"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">case class</span>
-      </span>
-      <span class="symbol">
-        <a href="ColumnMultyTypeError.html"><span class="name">ColumnMultyTypeError</span></a><span class="params">(<span name="columnName">columnName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="expectedTypes">expectedTypes: <span class="extype" name="scala.List">List</span>[<a href="https://spark.apache.org/docs/2.4.8/api/scala/index.html#org.apache.spark.sql.types.DataType" class="extype" target="_top">DataType</a>]</span>, <span name="foundType">foundType: <a href="https://spark.apache.org/docs/2.4.8/api/scala/index.html#org.apache.spark.sql.types.DataType" class="extype" target="_top">DataType</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="location">location: <a href="Location.html" class="extype" name="doric.sem.Location">Location</a></span>)</span><span class="result"> extends <a href="DoricSingleError.html" class="extype" name="doric.sem.DoricSingleError">DoricSingleError</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#doric.sem.package@ColumnMultyTypeErrorextendsDoricSingleErrorwithProductwithSerializable" title="Permalink" target="_top">
+      <a href="../../index.html#doric.sem.package@ColumnMultiTypeErrorextendsDoricSingleErrorwithProductwithSerializable" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -216,7 +199,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="Location.html"><span class="name">Location</span></a><span class="params">(<span name="fileName">fileName: <a href="https://javadoc.io/page/com.lihaoyi/sourcecode_2.11/0.2.8/index.html#sourcecode.FileName" class="extype" target="_top">FileName</a></span>, <span name="lineNumber">lineNumber: <a href="https://javadoc.io/page/com.lihaoyi/sourcecode_2.11/0.2.8/index.html#sourcecode.Line" class="extype" target="_top">Line</a></span>)</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="Location.html"><span class="name">Location</span></a><span class="params">(<span name="fileName">fileName: <a href="https://javadoc.io/page/com.lihaoyi/sourcecode_2.11/0.3.0/index.html#sourcecode.FileName" class="extype" target="_top">FileName</a></span>, <span name="lineNumber">lineNumber: <a href="https://javadoc.io/page/com.lihaoyi/sourcecode_2.11/0.3.0/index.html#sourcecode.Line" class="extype" target="_top">Line</a></span>)</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#doric.sem.package@LocationextendsProductwithSerializable" title="Permalink" target="_top">
@@ -248,7 +231,24 @@
 
         <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol><li name="doric.sem.Location" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="doric.sem.DoricSingleError" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DoricSingleError"></a>
+      <a id="DoricSingleError:DoricSingleError"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DoricSingleError$.html"><span class="name">DoricSingleError</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#doric.sem.package@DoricSingleError" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="doric.sem.Location" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Location"></a>
       <a id="Location:Location"></a>
       <h4 class="signature">
