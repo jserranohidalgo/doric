@@ -11,7 +11,7 @@ permalink: docs/errors/
 Let's see again the error raised by doric when making a reference to a non-existing column:
 ```scala
 // Doric
-List(1,2,3).toDF.select(colInt("id")+1)
+List(1,2,3).toDF().select(colInt("id")+1)
 // doric.sem.DoricMultiError: Found 1 error in select
 //   Cannot resolve column name "id" among (value)
 //   	located at . (errors.md:27)
