@@ -2189,18 +2189,18 @@ spaces. The length of binary strings includes binary zeros.
             This conversion will take place only if T is String (T =:= <span class="extype" name="scala.Predef.String">String</span>).
           </dd><dt>Definition Classes</dt><dd>StringOperationsSyntax</dd><dt>See also</dt><dd><span class="cmt"><p><a href="https://spark.apache.org/docs/2.4.8/api/scala/index.html#org.apache.spark.sql.Column@like(literal:&lt;?&gt;):org.apache.spark.sql.Column" class="extype" target="_top">org.apache.spark.sql.Column.like</a></p></span></dd></dl></div>
     </li><li name="doric.syntax.LiteralConversions.LiteralOps#lit" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="lit:doric.LiteralDoricColumn[L]"></a>
-      <a id="lit:LiteralDoricColumn[TransformationDoricColumn[T]]"></a>
+      <a id="lit(implicitl:doric.sem.Location):doric.LiteralDoricColumn[L]"></a>
+      <a id="lit(Location):LiteralDoricColumn[TransformationDoricColumn[T]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="implicit">lit</span><span class="result">: <a href="LiteralDoricColumn.html" class="extype" name="doric.LiteralDoricColumn">LiteralDoricColumn</a>[<a href="" class="extype" name="doric.TransformationDoricColumn">TransformationDoricColumn</a>[<span class="extype" name="doric.TransformationDoricColumn.T">T</span>]]</span>
+        <span class="implicit">lit</span><span class="params">(<span class="implicit">implicit </span><span name="l">l: <a href="sem/Location.html" class="extype" name="doric.sem.Location">Location</a></span>)</span><span class="result">: <a href="LiteralDoricColumn.html" class="extype" name="doric.LiteralDoricColumn">LiteralDoricColumn</a>[<a href="" class="extype" name="doric.TransformationDoricColumn">TransformationDoricColumn</a>[<span class="extype" name="doric.TransformationDoricColumn.T">T</span>]]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../index.html#doric.TransformationDoricColumn@lit:doric.LiteralDoricColumn[L]" title="Permalink" target="_top">
+      <a href="../index.html#doric.TransformationDoricColumn@lit(implicitl:doric.sem.Location):doric.LiteralDoricColumn[L]" title="Permalink" target="_top">
         <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -2223,7 +2223,7 @@ a literal with the same type.</p></dd></dl><dl class="attributes block"> <dt cla
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="implicit">locate</span><span class="params">(<span name="substr">substr: <a href="package.html#StringColumn=doric.DoricColumn[String]" class="extmbr" name="doric.StringColumn">StringColumn</a></span>, <span name="pos">pos: <a href="package.html#IntegerColumn=doric.DoricColumn[Int]" class="extmbr" name="doric.IntegerColumn">IntegerColumn</a> = <span class="symbol"><span class="name"><a href="types/LiteralSparkType$.html">1.lit</a></span></span></span>)</span><span class="result">: <a href="package.html#IntegerColumn=doric.DoricColumn[Int]" class="extmbr" name="doric.IntegerColumn">IntegerColumn</a></span>
+        <span class="implicit">locate</span><span class="params">(<span name="substr">substr: <a href="package.html#StringColumn=doric.DoricColumn[String]" class="extmbr" name="doric.StringColumn">StringColumn</a></span>, <span name="pos">pos: <a href="package.html#IntegerColumn=doric.DoricColumn[Int]" class="extmbr" name="doric.IntegerColumn">IntegerColumn</a> = <span class="symbol"><span class="name"><a href="sem/Location$.html">1.lit</a></span></span></span>)</span><span class="result">: <a href="package.html#IntegerColumn=doric.DoricColumn[Int]" class="extmbr" name="doric.IntegerColumn">IntegerColumn</a></span>
       </span>
       </h4><span class="permalink">
       <a href="../index.html#doric.TransformationDoricColumn@locate(substr:doric.StringColumn,pos:doric.IntegerColumn):doric.IntegerColumn" title="Permalink" target="_top">
