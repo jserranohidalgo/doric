@@ -445,7 +445,7 @@ trait TypedColumnTest extends Matchers with DatasetComparer {
       val providedDatatype = df2(colName).expr.dataType
       assert(
         SparkType[T].isEqual(providedDatatype),
-        s"the type of the column '$column' is not ${SparkType[T].dataType} is $providedDatatype"
+        s"the type of the column '$column' is not ${SparkType[T].dataType} but $providedDatatype"
       )
       if (show) {
         df2.show(false)

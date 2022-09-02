@@ -13,6 +13,7 @@ import org.apache.spark.sql.catalyst.expressions.ExtractValue
 import org.apache.spark.sql.functions.{struct => sparkStruct}
 import shapeless.labelled.FieldType
 import shapeless.{::, HList, LabelledGeneric, Witness}
+import scala.language.experimental.macros
 
 private[syntax] trait DStructs {
 
@@ -44,9 +45,9 @@ private[syntax] trait DStructs {
       * @return
       * a reference to the child column of the provided type.
       */
-    def getChild[T: SparkType](
+    def getChild[A: SparkType](
         subColumnName: String
-    )(implicit location: Location): DoricColumn[T] = {
+    )(implicit location: Location): DoricColumn[A] = {
       (col.elem, subColumnName.lit.elem)
         .mapN((a, b) => (a, b))
         .mapK(toEither)
@@ -61,17 +62,17 @@ private[syntax] trait DStructs {
                     df.sparkSession.sessionState.analyzer.resolver
                   )
                 )
-                if (SparkType[T].isEqual(subColumn.expr.dataType))
+                if (SparkType[A].isEqual(subColumn.expr.dataType))
                   subColumn.asRight
                 else
                   ColumnTypeError(
                     subColumnName,
-                    SparkType[T].dataType,
+                    SparkType[A].dataType,
                     subColumn.expr.dataType
                   ).leftNec
               } else {
                 ColumnTypeError(
-                  "",
+                  "Should not happen",
                   SparkType[Row].dataType,
                   vcolumn.expr.dataType
                 ).leftNec
@@ -85,13 +86,9 @@ private[syntax] trait DStructs {
         .mapK(toValidated)
         .toDC
     }
-
-    def child: DynamicFieldAccessor[T] = new DynamicFieldAccessor(col)
   }
 
-  class DynamicFieldAccessor[T](dCol: DoricColumn[T])(implicit
-      st: SparkType.Custom[T, Row]
-  ) extends Dynamic {
+  trait DynamicFieldAcc[T] extends Dynamic { self: DoricColumn[T] =>
 
     /**
       * Allows for accessing fields of struct columns using the syntax `rowcol.name[T]`.
@@ -104,9 +101,13 @@ private[syntax] trait DStructs {
       * @return The column which refers to the given field
       * @throws doric.sem.ColumnTypeError if the parent column is not a struct
       */
-    def selectDynamic[A: SparkType](name: String)(implicit
-        location: Location
-    ): DoricColumn[A] = dCol.getChild[A](name)
+    // DOES NOT LONGER WORK!
+    def selectDynamic[A](name: String): DoricColumn[A] =
+      macro DStructMacros.lookupMacro[A, T]
+
+    def applyDynamic[A](name: String)(): DoricColumn[A] =
+      macro DStructMacros.lookupMacroApply[A, T]
+
   }
 
   @annotation.implicitNotFound(msg = "No field ${K} in record ${L}")

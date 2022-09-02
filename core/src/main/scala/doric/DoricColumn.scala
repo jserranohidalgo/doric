@@ -1,5 +1,5 @@
 package doric
-
+import scala.language.dynamics
 import cats.data.{Kleisli, NonEmptyChain, Validated}
 import cats.implicits._
 import doric.sem.{ColumnTypeError, DoricSingleError, Location, SparkErrorWrapper}
@@ -10,7 +10,7 @@ import org.apache.spark.sql.{Column, Dataset}
 import org.apache.spark.sql.catalyst.analysis.UnresolvedAttribute
 import org.apache.spark.sql.types.DataType
 
-sealed trait DoricColumn[T] {
+sealed trait DoricColumn[T] extends DynamicFieldAcc[T] {
   val elem: Doric[Column]
 }
 
