@@ -19,27 +19,27 @@ class DynamicSpec extends DoricTestElements with EitherValues with Matchers {
     describe("over generic struct types, i.e. Rows") {
 
       it("should work if type expectations are provided") {
-        // df.validateColumnType(row.user[Row])
-        // df.validateColumnType(row.user[User])
+        df.validateColumnType(row.user[Row])
+        df.validateColumnType(row.user[User])
         df.validateColumnType(row.user[Row].name[String]())
         df.validateColumnType(col[Row]("user").age[Int]())
       }
-      /*
+
       it("should fail if type annotations are not provided") {
+        // TODO: implement with macro
         // """row.name""" shouldNot compile // Error should be "Type of field `name` should be specified"
-        // """row.user[Row].name""" shouldNot compile
+        """row.user[Row].name()""" shouldNot compile
       }
-       */
+
     }
 
     describe("over fully specified struct types, i.e. case classes") {
       // SparkType[(User, Int)]
       it("should work without type expectations") {
         // df.validateColumnType(row[(User, Int)]._1: DoricColumn[User])
-        // df.validateColumnType(row[(User, Int)]._2: DoricColumn[Int
-        // ])
+        // df.validateColumnType(row[(User, Int)]._2: DoricColumn[Int])
 
-        // df.validateColumnType(row.user[User].name: DoricColumn[String])
+        df.validateColumnType(row.user[User].name: DoricColumn[String])
         // df.validateColumnType(row.user[User].age: DoricColumn[Int])
       }
 
@@ -48,8 +48,8 @@ class DynamicSpec extends DoricTestElements with EitherValues with Matchers {
       ) {
         // df.validateColumnType(row[(User, Int)]._1[User])
         // df.validateColumnType(row[(User, Int)]._2[Int])
-        df.validateColumnType(row.user[User].name[String]())
-        df.validateColumnType(row.user[User].age[Int]())
+        /*df.validateColumnType(row.user[User].name[String]())
+        df.validateColumnType(row.user[User].age[Int]())*/
       }
 
       it(

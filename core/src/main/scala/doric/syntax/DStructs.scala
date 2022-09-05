@@ -102,8 +102,8 @@ private[syntax] trait DStructs {
       * @throws doric.sem.ColumnTypeError if the parent column is not a struct
       */
     // DOES NOT LONGER WORK!
-    def selectDynamic[A](name: String): DoricColumn[A] =
-      macro DStructMacros.lookupMacro[A, T]
+//    def selectDynamic[A](name: String): DoricColumn[A] =
+    //    macro DStructMacros.lookupMacro[A, T]
 
     def applyDynamic[A](name: String)(): DoricColumn[A] =
       macro DStructMacros.lookupMacroApply[A, T]
