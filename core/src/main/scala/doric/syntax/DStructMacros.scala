@@ -10,75 +10,86 @@ import doric.sem.Location
 
 import org.apache.spark.sql.Row
 
-trait MacroHelpers {
-  val c: Context
+class DStructMacros(val c: Context) {
   import c.universe._
 
-  protected def error(msg: String) = c.error(c.enclosingPosition, msg)
-
-}
-
-class DStructMacros(val c: Context) extends MacroHelpers {
-  import c.universe._
-
-  private def lookup(
+  private def genColumn(
       column: Tree,
       key: Tree,
       TType: Type,
       AType: Type /*,
       STAtree: Tree,
       Ltree: Tree*/
-  ) =
-    q"new DStructOps[$TType]($column).getChild[$AType]($key)(implicitly, implicitly)" // /*($STAtree, $Ltree)*/
-  // q"new DStructOps[$TType]($column).getChild[Int]($key)(implicitly, implicitly)" // /*($STAtree, $Ltree)*/
-  // q"new DStructOps[$TType]($column)"
-  // q"""col[Int]("name")"""
-  /*
-  def lookupMacro[A: c.WeakTypeTag, T: c.WeakTypeTag](
-      name: c.Expr[String]
-  ): c.Expr[DoricColumn[A]] = {
-    val Ttpe: Type = implicitly[c.WeakTypeTag[T]].tpe
-    val Atpe: Type = implicitly[c.WeakTypeTag[A]].tpe
-    // val STAtpe: Type = c.universe.appliedType(typeOf[SparkType[_]], Atpe)
-    // val STAtree: Tree = c.inferImplicitValue(STAtpe)
-    // val Ltree: Tree   = c.inferImplicitValue(typeOf[Location])
-    println(s"T: $Ttpe")
-    println(s"A: $Atpe")
-    println(s"K: $name")
-    // println(s"SparkType[A]: $STAtree")
-    val t =
-      c.Expr[DoricColumn[A]](
-        lookup(c.prefix.tree, name.tree, Ttpe, Atpe /*, STAtree, Ltree*/ )
-      )
-    println(s"RESULT: $t")
-    t
+  ) = {
+    val STAtree: Tree =
+      c.inferImplicitValue(appliedType(typeOf[SparkType[_]], AType))
+    val Ltree: Tree = c.inferImplicitValue(typeOf[Location])
+    q"new DStructOps[$TType]($column).getChild[$AType]($key)($STAtree, $Ltree): DoricColumn[$AType]" // /*($STAtree, $Ltree)*/
   }
-   */
-  def lookupMacroApply[A: c.WeakTypeTag, T: c.WeakTypeTag](
+
+  def inferAFromCaseClass(parent: Type, member: String): Option[Type] = {
+    val result = parent.member(TermName(member)).infoIn(parent).resultType
+    if (result == NoType) None
+    else Some(result)
+  }
+  /*
+  def columnMacroSelect[A: c.WeakTypeTag, T: c.WeakTypeTag](
       name: c.Expr[String]
-  )(): c.Expr[DoricColumn[A]] = {
+  ): Tree =
+    columnMacroApply(name)()
+   */
+  def columnMacroApply[A: c.WeakTypeTag, T: c.WeakTypeTag](
+      name: c.Expr[String]
+  )(): Tree = {
+
     val Ttpe: Type = implicitly[c.WeakTypeTag[T]].tpe
     val Atpe: Type = implicitly[c.WeakTypeTag[A]].tpe
-    val AnotSpecified =
-      Atpe.typeSymbol.fullName == "doric.syntax.DStructs.DynamicFieldAcc.A"
-    val TisRow = Ttpe =:= typeOf[Row]
 
-    println(s"T: $Ttpe, isRow: $TisRow")
-    println(s"A: ${Atpe.typeSymbol.fullName}, notSpecified: $AnotSpecified")
-    println(s"K: $name")
+    val TisRow       = Ttpe =:= typeOf[Row]
+    val TisCaseClass = Ttpe.typeSymbol.asInstanceOf[ClassSymbol].isCaseClass
 
-    if (AnotSpecified && TisRow)
+    val AisSpecified                       = !(Atpe =:= typeOf[Nothing])
+    val Literal(Constant(nameStr: String)) = name.tree
+    val keyType: Option[Type] =
+      if (!TisCaseClass) None else inferAFromCaseClass(Ttpe, nameStr)
+    val matchATypes = !AisSpecified || keyType.fold(true) { keyType =>
+      keyType =:= Atpe
+    }
+
+    println(s"T: $Ttpe, isRow: $TisRow, isCaseClass: $TisCaseClass")
+    println(s"K: $nameStr")
+    println(
+      s"A: $Atpe, isSpecified: $AisSpecified, inferred: $keyType, match: $matchATypes"
+    )
+
+    if (!TisRow && !TisCaseClass) {
+      c.error(
+        c.enclosingPosition,
+        s"Enclosing type $Ttpe is neither a case class nor `Row`"
+      )
+      EmptyTree
+    } else if (TisRow && !AisSpecified) {
       c.error(
         c.enclosingPosition,
         "Type of member field not specified in a dynamic context (i.e. Row)"
       )
-
-    val t =
-      c.Expr[DoricColumn[A]](
-        lookup(c.prefix.tree, name.tree, Ttpe, Atpe /*, STAtree, Ltree*/ )
+      EmptyTree
+    } else if (TisRow && AisSpecified)
+      genColumn(c.prefix.tree, name.tree, Ttpe, Atpe)
+    else if (!keyType.isDefined) {
+      c.error(
+        c.enclosingPosition,
+        s"Field `$nameStr` is not a member of case class $Ttpe"
       )
-    println(s"\nRESULT: $t")
-    t
+      EmptyTree
+    } else if (!matchATypes) {
+      c.error(
+        c.enclosingPosition,
+        s"Type ${keyType.head} of field `$nameStr` in case class $Ttpe differs from specified type $Atpe"
+      )
+      EmptyTree
+    } else
+      genColumn(c.prefix.tree, name.tree, Ttpe, keyType.head)
   }
 
 }

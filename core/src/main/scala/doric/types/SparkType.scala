@@ -195,7 +195,7 @@ trait SparkTypeLPI_I extends SparkTypeLPI_II with SparkTypeLPI_I_Specific {
   implicit val fromJavaBoolean: Primitive[java.lang.Boolean] =
     SparkType[java.lang.Boolean](BooleanType)
 
-  implicit val fromStringDf: Primitive[String] = SparkType[String](StringType)
+  implicit val fromString: Primitive[String] = SparkType[String](StringType)
 
   implicit val fromBinary: Primitive[Array[Byte]] =
     SparkType[Array[Byte]](org.apache.spark.sql.types.BinaryType)
