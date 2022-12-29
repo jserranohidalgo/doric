@@ -28,7 +28,7 @@ class DynamicSpec extends DoricTestElements with EitherValues with Matchers {
 
       it("should fail if type annotations are not provided") {
         // TODO: implement with macro
-        row.name
+        // row.name
         // """row.name""" shouldNot compile // Error should be "Type of field `name` should be specified"
         """row.user[Row].name()""" shouldNot compile
       }
@@ -38,6 +38,11 @@ class DynamicSpec extends DoricTestElements with EitherValues with Matchers {
         df.validateColumnType(row.user[User])
         df.validateColumnType(row.user[Row].name[String]())
         df.validateColumnType(row.user[Row].age[Int]())
+        row
+          .user[(((String, Int), Int), Boolean)]
+          ._1()
+          ._1()
+          ._1(): DoricColumn[String]
       }
     }
 
@@ -57,7 +62,7 @@ class DynamicSpec extends DoricTestElements with EitherValues with Matchers {
 
       it("should work without type expectations if member exists") {
         df.validateColumnType(row.tuple[(String, Int)]._1())
-        df.validateColumnType(row.user[User].name())
+        df.validateColumnType(row.user[User].name
         df.validateColumnType(row.user[User].age())
       }
 
