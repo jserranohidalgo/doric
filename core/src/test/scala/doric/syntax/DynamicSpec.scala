@@ -27,10 +27,7 @@ class DynamicSpec extends DoricTestElements with EitherValues with Matchers {
     describe("over generic struct types, i.e. Rows") {
 
       it("should fail if type annotations are not provided") {
-        // TODO: implement with macro
-        // row.name
-        // """row.name""" shouldNot compile // Error should be "Type of field `name` should be specified"
-        """row.user[Row].name()""" shouldNot compile
+        """row.user[Row].name()""" shouldNot compile // Error should be "Type of member field not specified in a dynamic context (i.e. Row)"
       }
 
       it("should work if type expectations are provided") {
@@ -38,11 +35,6 @@ class DynamicSpec extends DoricTestElements with EitherValues with Matchers {
         df.validateColumnType(row.user[User])
         df.validateColumnType(row.user[Row].name[String]())
         df.validateColumnType(row.user[Row].age[Int]())
-        row
-          .user[(((String, Int), Int), Boolean)]
-          ._1()
-          ._1()
-          ._1(): DoricColumn[String]
       }
     }
 
@@ -51,10 +43,7 @@ class DynamicSpec extends DoricTestElements with EitherValues with Matchers {
       it(
         "should not work with or without type expectations if member doesn't exist"
       ) {
-        /*row.tuple[(String, Int)]._3()
-        row.user[User].ageee()
-        row.tuple[(String, Int)]._3[String]()*/
-        """row.tuple[(String, Int)]._3()""" shouldNot compile
+        """row.tuple[(String, Int)]._3()""" shouldNot compile // Error should be "Field `_3` is not a member of case class (String, Int)"
         """row.user[User].ageee()""" shouldNot compile
         """row.tuple[(String, Int)]._3[String]()""" shouldNot compile
         """row.user[User].ageee[Int]()""" shouldNot compile
@@ -62,10 +51,10 @@ class DynamicSpec extends DoricTestElements with EitherValues with Matchers {
 
       it("should work without type expectations if member exists") {
         df.validateColumnType(row.tuple[(String, Int)]._1())
-        df.validateColumnType(row.user[User].name
+        df.validateColumnType(row.user[User].name())
         df.validateColumnType(row.user[User].age())
       }
-
+      col[String]("foo").methodNotImplemented()
       it(
         "should work with type expectations if they agree with the column type"
       ) {
@@ -78,7 +67,7 @@ class DynamicSpec extends DoricTestElements with EitherValues with Matchers {
       it(
         "should fail with type expectations if they don't agree with the column type"
       ) {
-        """row.table[(String, Int)]._1[Int]()""" shouldNot compile
+        """row.table[(String, Int)]._1[Int]()""" shouldNot compile // Error should be "Type String of field `_1` in case class (String, Int) differs from specified type Int"
         """row.table[(String, Int)]._2[String]()""" shouldNot compile
         """row.user[User].name[Int]()""" shouldNot compile
         """row.user[User].age[String]()""" shouldNot compile
