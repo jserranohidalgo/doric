@@ -4,10 +4,11 @@ package syntax
 import doric.sem.{ChildColumnNotFound, ColumnTypeError, DoricMultiError}
 import doric.testUtilities.data.User
 import doric.types.SparkType
-import org.apache.spark.sql.types.{IntegerType, StringType}
-import org.apache.spark.sql.{Row, functions => f}
 
+import org.apache.spark.sql.types.{IntegerType, StringType}
+import org.apache.spark.sql.{DataFrame, Row, functions => f}
 import java.sql.Timestamp
+
 import scala.jdk.CollectionConverters._
 
 case class User2(name: String, surname: String, age: Int, birthday: Timestamp)
@@ -107,6 +108,30 @@ class DStructOpsSpec extends DoricTestElements {
     it("should not work statically if the field doesn't exist") {
       """col[User]("user").getChildSafe(Symbol("nameeee"))""" shouldNot compile
     }
+  }
+
+  val df3: DataFrame = List((1, "hola"), (2, "adios")).toDF
+
+  describe("Struct creation with specific type") {
+    // WIP Tests
+    it("should work if fields of product type match argument types") {
+      df3
+        .select(
+          struct2[MyUser](colString("_2"), colInt("_1"))
+            .getChild[String]("name")
+        )
+        .show
+      df3
+        .select(
+          struct2[(String, Int)](colString("_2"), colInt("_1")).child._1[String]
+        )
+        .show
+    }
+
+    it("should not compile otherwise") {
+      """struct2[(Int, Boolean)](colString("s"), colBoolean("b"))""" shouldNot compile
+    }
+
   }
 
   describe("toJson(struct) doric function") {

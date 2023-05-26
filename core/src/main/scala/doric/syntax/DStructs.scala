@@ -1,16 +1,18 @@
 package doric
 package syntax
 
+import scala.annotation.implicitNotFound
+
 import cats.data.Kleisli
 import cats.evidence.Is
 import cats.implicits._
 import doric.sem.{ColumnTypeError, Location, SparkErrorWrapper}
 import doric.types.SparkType
+
 import org.apache.spark.sql.catalyst.expressions.ExtractValue
 import org.apache.spark.sql.{Column, Dataset, Row, functions => f}
 import shapeless.labelled.FieldType
-import shapeless.{::, HList, LabelledGeneric, Witness}
-
+import shapeless.{::, Generic, HList, HNil, LabelledGeneric, Lazy, Witness}
 import scala.jdk.CollectionConverters._
 import scala.language.dynamics
 
@@ -24,8 +26,10 @@ protected trait DStructs {
     * @return
     *   A DStruct DoricColumn.
     */
-  def struct(cols: DoricColumn[_]*): RowColumn =
-    cols.map(_.elem).toList.sequence.map(c => f.struct(c: _*)).toDC
+  def struct(cols: DoricColumn[_]*): RowColumn = {
+    cols.toList.traverse(_.elem).map(c => f.struct(c: _*)).toDC
+    // cols.map(_.elem).toList.sequence.map(c => f.struct(c: _*)).toDC
+  }
 
   implicit class DStructOps[T](private val col: DoricColumn[T])(implicit
       st: SparkType.Custom[T, Row]
@@ -157,6 +161,55 @@ protected trait DStructs {
         location: Location
     ): DoricColumn[S.V] =
       new DStructOps(dc).getChild[S.V](k.value.name)(S.st, location)
+  }
+
+  @implicitNotFound(
+    "Field types of struct type ${T} couldn't be found"
+  )
+  trait Struct2[T <: Product] {
+    type F1
+    type F2
+    val f1: String
+    val f2: String
+    def struct2(u: DoricColumn[F1], v: DoricColumn[F2]): DoricColumn[T] =
+      ((u.elem, v.elem).mapN((x, y) => f.struct(x.as(f1), y.as(f2)))).toDC
+  }
+
+  object Struct2 {
+    type Aux[T <: Product, _F1, _F2] = Struct2[T] {
+      type F1 = _F1; type F2 = _F2
+    }
+
+    implicit def record2[K1 <: Symbol, K2 <: Symbol, V1, V2, L, T <: Product](
+        implicit
+        LG: Lazy[LabelledGeneric.Aux[T, FieldType[K1, V1] :: FieldType[
+          K2,
+          V2
+        ] :: HNil]],
+        W1: Witness.Aux[K1],
+        W2: Witness.Aux[K2]
+    ) =
+      new Struct2[T] {
+        type F1 = V1
+        type F2 = V2
+        val f1 = W1.value.name
+        val f2 = W2.value.name
+      }
+  }
+
+  def struct2[T <: Product]: Struct2Aux[T] =
+    new Struct2Aux[T] {}
+
+  trait Struct2Aux[T <: Product] {
+    def apply[U, V](u: DoricColumn[U], v: DoricColumn[V])(implicit
+        /* According to https://www.scala-lang.org/api/2.13.8/scala/annotation/implicitNotFound.html
+        this should compile:
+        @implicitNotFound(
+          "Struct type ${T} can't be decomposed into fields of types ${U} and ${V}"
+        )*/
+        S2: Struct2.Aux[T, U, V]
+    ): DoricColumn[T] =
+      S2.struct2(u, v)
   }
 
 }
