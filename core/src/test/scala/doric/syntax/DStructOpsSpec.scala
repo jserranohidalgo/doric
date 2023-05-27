@@ -111,6 +111,7 @@ class DStructOpsSpec extends DoricTestElements {
   }
 
   val df3: DataFrame = List((1, "hola"), (2, "adios")).toDF
+  case class MyUser(name: String, age: Int)
 
   describe("Struct creation with specific type") {
     // WIP Tests
