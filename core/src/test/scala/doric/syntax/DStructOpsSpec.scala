@@ -95,18 +95,18 @@ class DStructOpsSpec extends DoricTestElements {
 
     it("should work statically as well") {
       dfUsers
-        .select(col[User]("user").getChildSafe(Symbol("name")) as "name")
+        .select(col[User]("user").get('name) as "name")
         .collectCols(col[String]("name")) shouldBe
         List("name1", "name2", "name3")
 
       dfUsers
-        .select(col[User]("user").getChildSafe(Symbol("age")) as "age")
+        .select(col[User]("user").get('age) as "age")
         .collectCols(col[Int]("age")) shouldBe
         List(1, 2, 3)
     }
 
     it("should not work statically if the field doesn't exist") {
-      """col[User]("user").getChildSafe(Symbol("nameeee"))""" shouldNot compile
+      """col[User]("user").get('nameeee)""" shouldNot compile
     }
   }
 
@@ -119,7 +119,7 @@ class DStructOpsSpec extends DoricTestElements {
       df3
         .select(
           struct2[MyUser](colString("_2"), colInt("_1"))
-            .getChild[String]("name")
+            .get('name)
         )
         .show
       df3

@@ -156,11 +156,12 @@ protected trait DStructs {
       lg: LabelledGeneric.Aux[T, L],
       st: SparkType.Custom[T, Row]
   ) {
-    def getChildSafe[K <: Symbol](k: Witness.Aux[K])(implicit
-        S: SelectorWithSparkType[L, K],
+    def get[K <: Symbol](k: Witness)(implicit
+        E: k.T =:= K,
+        S: Lazy[SelectorWithSparkType[L, K]],
         location: Location
-    ): DoricColumn[S.V] =
-      new DStructOps(dc).getChild[S.V](k.value.name)(S.st, location)
+    ): DoricColumn[S.value.V] =
+      new DStructOps(dc).getChild[S.value.V](k.value.name)(S.value.st, location)
   }
 
   @implicitNotFound(
