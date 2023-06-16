@@ -1187,23 +1187,6 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="doric.syntax.DStructs.Struct2Aux" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="Struct2Aux[T&lt;:Product]extendsAnyRef"></a>
-      <a id="Struct2Aux[T&lt;:Product]:Struct2Aux[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a href="syntax/DStructs$Struct2Aux.html"><span class="name">Struct2Aux</span></a><span class="tparams">[<span name="T">T &lt;: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a></span>]</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#doric.syntax.DStructs@Struct2Aux[T&lt;:Product]extendsAnyRef" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="syntax/DStructs.html" class="extype" name="doric.syntax.DStructs">DStructs</a></dd></dl></div>
     </li><li name="doric.syntax.DStructs.StructOps" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="StructOps[T,L&lt;:shapeless.HList]extendsAnyRef"></a>
       <a id="StructOps[T,L&lt;:HList]:StructOps[T,L]"></a>
@@ -2591,6 +2574,23 @@ column.
   the String DoricColumns to format</p></dd><dt>returns</dt><dd class="cmt"><p>
   Formats the arguments in printf-style and returns the result as a string
   column.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="syntax/StringColumns.html" class="extype" name="doric.syntax.StringColumns">StringColumns</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="https://spark.apache.org/docs/2.4.8/api/scala/index.html#org.apache.spark.sql.functions$@format_string(format:&lt;?&gt;,arguments:&lt;?&gt;):org.apache.spark.sql.Column" class="extype" target="_top">org.apache.spark.sql.functions.format_string</a></p></span></dd></dl></div>
+    </li><li name="doric.syntax.DStructs#fromTuple2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fromTuple2[A,B](t:(doric.DoricColumn[A],doric.DoricColumn[B])):doric.DoricColumn[(A,B)]"></a>
+      <a id="fromTuple2[A,B]((DoricColumn[A],DoricColumn[B])):DoricColumn[(A,B)]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fromTuple2</span><span class="tparams">[<span name="A">A</span>, <span name="B">B</span>]</span><span class="params">(<span name="t">t: (<a href="DoricColumn.html" class="extype" name="doric.DoricColumn">DoricColumn</a>[<span class="extype" name="doric.syntax.DStructs.fromTuple2.A">A</span>], <a href="DoricColumn.html" class="extype" name="doric.DoricColumn">DoricColumn</a>[<span class="extype" name="doric.syntax.DStructs.fromTuple2.B">B</span>])</span>)</span><span class="result">: <a href="DoricColumn.html" class="extype" name="doric.DoricColumn">DoricColumn</a>[(<span class="extype" name="doric.syntax.DStructs.fromTuple2.A">A</span>, <span class="extype" name="doric.syntax.DStructs.fromTuple2.B">B</span>)]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#doric.package@fromTuple2[A,B](t:(doric.DoricColumn[A],doric.DoricColumn[B])):doric.DoricColumn[(A,B)]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="syntax/DStructs.html" class="extype" name="doric.syntax.DStructs">DStructs</a></dd></dl></div>
     </li><li name="doric.syntax.CommonColumns#greatest" visbl="pub" data-isabs="false" fullComment="yes" group="All Types">
       <a id="greatest[T](col:doric.DoricColumn[T],cols:doric.DoricColumn[T]*):doric.DoricColumn[T]"></a>
       <a id="greatest[T](DoricColumn[T],DoricColumn[T]*):DoricColumn[T]"></a>
@@ -3375,23 +3375,6 @@ the standard normal distribution.
       <p class="shortcomment cmt">Creates a struct with the columns</p><div class="fullcomment"><div class="comment cmt"><p>Creates a struct with the columns</p></div><dl class="paramcmts block"><dt class="param">cols</dt><dd class="cmt"><p>
   the columns that will form the struct</p></dd><dt>returns</dt><dd class="cmt"><p>
   A DStruct DoricColumn.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="syntax/DStructs.html" class="extype" name="doric.syntax.DStructs">DStructs</a></dd></dl></div>
-    </li><li name="doric.syntax.DStructs#struct2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="struct2[T&lt;:Product]:DStructs.this.Struct2Aux[T]"></a>
-      <a id="struct2[T&lt;:Product]:Struct2Aux[T]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">struct2</span><span class="tparams">[<span name="T">T &lt;: <a href="http://www.scala-lang.org/api/2.11.12/index.html#scala.Product" class="extype" target="_top">Product</a></span>]</span><span class="result">: <a href="syntax/DStructs$Struct2Aux.html" class="extype" name="doric.syntax.DStructs.Struct2Aux">Struct2Aux</a>[<span class="extype" name="doric.syntax.DStructs.struct2.T">T</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../index.html#doric.package@struct2[T&lt;:Product]:DStructs.this.Struct2Aux[T]" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="syntax/DStructs.html" class="extype" name="doric.syntax.DStructs">DStructs</a></dd></dl></div>
     </li><li name="doric.syntax.AggregationColumns#sum" visbl="pub" data-isabs="false" fullComment="yes" group="Aggregation Numeric Type">
       <a id="sum[T](col:doric.DoricColumn[T])(implicitnt:doric.types.NumericType[T]):doric.DoricColumn[nt.Sum]"></a>
       <a id="sum[T](DoricColumn[T])(NumericType[T]):DoricColumn[Sum]"></a>
