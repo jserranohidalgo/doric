@@ -360,9 +360,9 @@ trait SparkTypeLPI_III { self: SparkType.type =>
     override val rowFieldTransform: Any => Row = _.asInstanceOf[Row]
   }
 
-  implicit def fromHCons[V, K <: Symbol, VO, T <: HList](implicit
+  implicit def fromHCons[V, K <: Symbol, T <: HList](implicit
       W: Witness.Aux[K],
-      ST: Lazy[SparkType.Custom[V, VO]],
+      ST: Lazy[SparkType[V]],
       TS: Lazy[SparkType.Custom[T, Row]]
   ): Custom[FieldType[K, V] :: T, Row] = new SparkType[FieldType[K, V] :: T] {
     override def dataType: DataType =
@@ -376,7 +376,11 @@ trait SparkTypeLPI_III { self: SparkType.type =>
     override val nullable: Boolean = true
     override type OriginalSparkType = Row
     override val transform: Row => FieldType[K, V] :: T = row =>
-      field[K](ST.value.transform(row.getAs[VO](W.value.name))) :: TS.value
+      field[K](
+        ST.value.transform(
+          row.getAs[ST.value.OriginalSparkType](W.value.name)
+        )
+      ) :: TS.value
         .transform(row)
     override val rowFieldTransform: Any => OriginalSparkType =
       _.asInstanceOf[Row]

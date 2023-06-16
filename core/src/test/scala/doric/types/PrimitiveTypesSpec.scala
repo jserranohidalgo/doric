@@ -1,7 +1,6 @@
 package doric
 package types
 
-import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.Decimal
 import org.apache.spark.unsafe.types.CalendarInterval
 
@@ -169,7 +168,7 @@ class PrimitiveTypesSpec
       testDataType[User]
       testLitDataType[(Int, String)]((0, ""))
       testLitDataType[User](User("", 0))
-
+      testDataType[(Double, java.time.LocalDate)]
     }
   }
 
