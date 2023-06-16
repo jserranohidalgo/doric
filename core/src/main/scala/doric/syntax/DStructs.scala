@@ -172,7 +172,7 @@ protected trait DStructs {
     type F2
     val f1: String
     val f2: String
-    def struct2(u: DoricColumn[F1], v: DoricColumn[F2]): DoricColumn[T] =
+    def apply(u: DoricColumn[F1], v: DoricColumn[F2]): DoricColumn[T] =
       ((u.elem, v.elem).mapN((x, y) => f.struct(x.as(f1), y.as(f2)))).toDC
   }
 
@@ -196,21 +196,32 @@ protected trait DStructs {
         val f1 = W1.value.name
         val f2 = W2.value.name
       }
+
+    def apply[T <: Product]: Struct2Aux[T] =
+      new Struct2Aux[T] {}
+
+    trait Struct2Aux[T <: Product] {
+      def apply[U, V](u: DoricColumn[U], v: DoricColumn[V])(implicit
+          /* According to https://www.scala-lang.org/api/2.13.8/scala/annotation/implicitNotFound.html
+                                                            this should compile:
+                                                            @implicitNotFound(
+                                                              "Struct type ${T} can't be decomposed into fields of types ${U} and ${V}"
+                                                            )*/
+          S2: Struct2.Aux[T, U, V]
+      ): DoricColumn[T] =
+        S2(u, v)
+
+    }
+
+    def unapply[A: SparkType, B: SparkType](t: DoricColumn[(A, B)])(implicit
+        ST: SparkType.Custom[(A, B), Row]
+    ): Option[(DoricColumn[A], DoricColumn[B])] =
+      Some((t.getChild("_1"), t.getChild("_2")))
   }
 
-  def struct2[T <: Product]: Struct2Aux[T] =
-    new Struct2Aux[T] {}
-
-  trait Struct2Aux[T <: Product] {
-    def apply[U, V](u: DoricColumn[U], v: DoricColumn[V])(implicit
-        /* According to https://www.scala-lang.org/api/2.13.8/scala/annotation/implicitNotFound.html
-        this should compile:
-        @implicitNotFound(
-          "Struct type ${T} can't be decomposed into fields of types ${U} and ${V}"
-        )*/
-        S2: Struct2.Aux[T, U, V]
-    ): DoricColumn[T] =
-      S2.struct2(u, v)
-  }
+  implicit def fromTuple2[A, B](
+      t: (DoricColumn[A], DoricColumn[B])
+  ): DoricColumn[(A, B)] =
+    Struct2[(A, B)](t._1, t._2)
 
 }
