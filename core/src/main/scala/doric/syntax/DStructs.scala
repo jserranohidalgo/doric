@@ -219,9 +219,8 @@ protected trait DStructs {
       Some((t.getChild("_1"), t.getChild("_2")))
   }
 
-  implicit def fromTuple2[A, B](
-      t: (DoricColumn[A], DoricColumn[B])
+  implicit def fromTuple2[A, B, S <% DoricColumn[A], T <% DoricColumn[B]](
+      t: (S, T)
   ): DoricColumn[(A, B)] =
     Struct2[(A, B)](t._1, t._2)
-
 }
