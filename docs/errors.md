@@ -17,9 +17,9 @@ List(1,2,3).toDF().select(colInt("id")+1)
 //   	located at . (errors.md:27)
 // 
 // 	at doric.sem.package$ErrorThrower.$anonfun$returnOrThrow$1(package.scala:9)
-// 	at cats.data.Validated.fold(Validated.scala:29)
+// 	at cats.data.Validated.fold(Validated.scala:50)
 // 	at doric.sem.package$ErrorThrower.returnOrThrow(package.scala:9)
-// 	at doric.sem.TransformOps$DataframeTransformationSyntax.select(TransformOps.scala:139)
+// 	at doric.sem.TransformOps$DataframeTransformationSyntax.select(TransformOps.scala:140)
 // 	at repl.MdocSession$MdocApp$$anonfun$1.apply(errors.md:27)
 // 	at repl.MdocSession$MdocApp$$anonfun$1.apply(errors.md:27)
 // Caused by: org.apache.spark.sql.AnalysisException: [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column or function parameter with name `id` cannot be resolved. Did you mean one of the following? [`value`].
@@ -31,8 +31,8 @@ List(1,2,3).toDF().select(colInt("id")+1)
 // 	at org.apache.spark.sql.Dataset.col(Dataset.scala:1476)
 // 	at org.apache.spark.sql.Dataset.apply(Dataset.scala:1443)
 // 	at doric.types.SparkType.$anonfun$validate$1(SparkType.scala:61)
-// 	at cats.data.KleisliApply.$anonfun$product$2(Kleisli.scala:674)
-// 	at cats.data.Kleisli.$anonfun$map$1(Kleisli.scala:40)
+// 	at cats.data.KleisliApply.$anonfun$product$2(Kleisli.scala:735)
+// 	at scala.Function1.$anonfun$andThen$1(Function1.scala:57)
 ```
 
 As you may have already noticed, there is a slight difference with the exception reported by Spark: doric adds precise 
@@ -65,9 +65,9 @@ dfPair.select(col1, col2, col3)
 //   	located at . (errors.md:45)
 // 
 // 	at doric.sem.package$ErrorThrower.$anonfun$returnOrThrow$1(package.scala:9)
-// 	at cats.data.Validated.fold(Validated.scala:29)
+// 	at cats.data.Validated.fold(Validated.scala:50)
 // 	at doric.sem.package$ErrorThrower.returnOrThrow(package.scala:9)
-// 	at doric.sem.TransformOps$DataframeTransformationSyntax.select(TransformOps.scala:139)
+// 	at doric.sem.TransformOps$DataframeTransformationSyntax.select(TransformOps.scala:140)
 // 	at repl.MdocSession$MdocApp$$anonfun$2.apply(errors.md:52)
 // 	at repl.MdocSession$MdocApp$$anonfun$2.apply(errors.md:52)
 ```
